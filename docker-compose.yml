@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_USER: 'db'
+
+  pgcli:
+    build: .
+    depends_on:
+      - postgres
+    command:
+      - postgres://db:password@postgres/postgres
